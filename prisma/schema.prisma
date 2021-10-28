@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AcoesAfirmativas {
+  id Int @id @default(autoincrement())
+  dataCriacao DateTime @default(now())
+  datAtualizacao DateTime?
+  ///
+  dataResposta DateTime
+  professor Professor?
+  grupo Grupo?
+  tematicas String
+  dimensoes Dimensao[]
+  ///
+}
+
+model Dimensao {
+  id Int @id @default(autoincrement())
+  dataCriacao DateTime @default(now())
+  datAtualizacao DateTime?
+  ///
+  tipo String
+  tiposAcoesRealizadas String
+  descricaoAcoesRealizadas String
+  ///
+  acaoAfirmativa AcoesAfirmativas @relation(fields: [acaoAfirmativaId], references: [id])
+  acaoAfirmativaId Int
+}
+
+model Grupo {
+  id Int @id @default(autoincrement())
+  dataCriacao DateTime @default(now())
+  datAtualizacao DateTime?
+  ///
+  tipo String
+  nome String
+  liderNome String
+  liderEmail String
+  vinculoCnpq String
+  localReunioes String
+  redesSociais String
+  ///
+  acaoAfirmativa AcoesAfirmativas @relation(fields: [acaoAfirmativaId], references: [id])
+  acaoAfirmativaId Int
+}
+
+model Professor {
+  id Int @id @default(autoincrement())
+  dataCriacao DateTime @default(now())
+  datAtualizacao DateTime?
+  ///
+  nome String
+  email String
+  participaGrupoAcaoAfirmativa String
+  autorizaUtilizacaoInformacoes String
+  ///
+  acaoAfirmativa AcoesAfirmativas @relation(fields: [acaoAfirmativaId], references: [id])
+  acaoAfirmativaId Int
+}
+
