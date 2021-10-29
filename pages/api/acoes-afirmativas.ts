@@ -4,9 +4,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  let body = req.body;
-  for (let x = 0; x < body.length; x++) {
-    let acaoAfirmativa = body[x];
+  let acoesAfirmativas = req.body;
+  acoesAfirmativas.filter(async(acaoAfirmativa: any)=>{
     await prisma.acoesAfirmativas.create({
       data: {
         dataResposta: acaoAfirmativa.dataCriacao,
@@ -53,6 +52,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       }
     });
-  }
-  res.status(200).json({ status: "SUCESSO" });
+  });
+  res.status(200).send("SUCESSO");
 }

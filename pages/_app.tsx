@@ -1,8 +1,13 @@
-import type { AppProps } from 'next/app'
 import 'tailwindcss/tailwind.css'
+import type { AppProps } from 'next/app'
+import Menu from '../components/Menu'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+export default function OAAUPE({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Menu />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
-export default MyApp
