@@ -1,5 +1,5 @@
 {
-  "name": "oaaupe",
+  "name": "affirmative-actions-guns",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@prisma/client": "^3.3.0",
-    "axios": "^0.24.0",
     "next": "12.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-google-charts": "^3.0.15",
     "read-excel-file": "^5.2.20"
   },
   "devDependencies": {
