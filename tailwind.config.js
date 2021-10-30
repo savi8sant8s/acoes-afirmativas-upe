@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Oswald', 'Helvetica', 'Arial', 'sans-serif']
+      },
       colors: {
         whiteupe: {
           DEFAULT: "#FFFFF0",

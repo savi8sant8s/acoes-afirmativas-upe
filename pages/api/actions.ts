@@ -1,25 +1,57 @@
+import { PrismaClient } from '.prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from "../../services/db";
-import { getCountGroups } from '../../services/scraping-group-types';
 
-type ActionsStats = {
-    timestamp: Date,
-    countProfessor: Number,
-    countGroupsCnpq: Number,
-    countGroups: any,
-    countThemes: any
-};
+const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<ActionsStats>) {
-    if (req.method == "GET"){
-        let response: any = {};
-        response.timestamp = new Date();
-        response.countProfessor = await prisma.professor.count();
-        response.countGroupsCnpq = await prisma.grupo.count({where:{vinculoCnpq: "Sim"}});
-        let groups = await prisma.grupo.findMany({select: {tipo: true}});
-        response.countGroups = getCountGroups(groups, ["Tipo", "Quantidade"]);
-        let themes = await prisma.acoesAfirmativas.findMany({select: {tematicas: true}});
-        response.countThemes = getCountGroups(themes, ["Temáticas", "Quantidade"]);
-        res.status(200).json(response);
-    }
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  let acoesAfirmativas: any = req.body;
+  acoesAfirmativas.filter(async(acaoAfirmativa: any)=>{
+    await prisma.acoesAfirmativas.create({
+      data: {
+        dataResposta: acaoAfirmativa.dataCriacao,
+        professor: {
+          create: {
+            nome: acaoAfirmativa.nome,
+            email: acaoAfirmativa.email,
+            participaGrupoAcaoAfirmativa: acaoAfirmativa.participaGrupoAcaoAfirmativa,
+            autorizaUtilizacaoInformacoes: acaoAfirmativa.autorizaUtilizacaoInformacoes
+          }
+        },
+        grupo: {
+          create: {
+            nome: acaoAfirmativa.nomeGrupo,
+            tipo: acaoAfirmativa.tipoGrupo,
+            tematicas: acaoAfirmativa.tematicas,
+            liderNome: acaoAfirmativa.liderNome,
+            liderEmail: acaoAfirmativa.liderEmail,
+            vinculoCnpq: acaoAfirmativa.vinculoCnpq,
+            localReunioes: acaoAfirmativa.localReunioes,
+            redesSociais: acaoAfirmativa.redesSociais
+          }
+        },
+        dimensoes: {
+          createMany: {
+            data: [
+              {
+                tipo: "ENSINO",
+                tiposAcoesRealizadas: acaoAfirmativa.dimensaoEnsinoAcoes,
+                descricaoAcoesRealizadas: acaoAfirmativa.dimensaoEnsinoDescricao
+              },
+              {
+                tipo: "EXTENSAO",
+                tiposAcoesRealizadas: acaoAfirmativa.dimensaoExtensaoAcoes,
+                descricaoAcoesRealizadas: acaoAfirmativa.dimensaoExtensaoDescricao
+              },
+              {
+                tipo: "PESQUISA",
+                tiposAcoesRealizadas: acaoAfirmativa.dimensaoPesquisaAcoes,
+                descricaoAcoesRealizadas: acaoAfirmativa.dimensaoPesquisaDescricao
+              }
+            ]
+          }
+        }
+      }
+    });
+  });
+  res.status(200).send("SUCESSO");
 }

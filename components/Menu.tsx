@@ -1,9 +1,24 @@
+import { useEffect, useState } from "react"
+
 export default function Menu() {
-    return (
-      <nav className="flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full">
-        <div className="mb-2 sm:mb-0">
-          <a href="/" className="text-2xl no-underline text-grey-darkest hover:text-blue-dark">Observatório de Ações Afirmativas / UPE</a>
-        </div>
-      </nav>
-    )
-  }
+  const [logged, setLogged] = useState<boolean>();
+
+  useEffect(() => {
+    let logged = localStorage.getItem("logged");
+    if (logged) {
+      setLogged(true);
+    }
+  });
+
+  return (
+    <nav className="w-full flex justify-between bg-blupe m-auto p-4 text-whiteupe text-2xl">
+      <a href="/" className="cursor-pointer">Ações Afirmativas</a>
+      {!logged &&
+        <a href="acesso" className="cursor-pointer">Acesso</a>
+      }
+      {logged &&
+        <a href="painel" className="cursor-pointer">Painel</a>
+      }
+    </nav>
+  )
+};
