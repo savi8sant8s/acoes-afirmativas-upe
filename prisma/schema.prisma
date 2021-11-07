@@ -7,10 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum TipoDimensao {
+  ENSINO
+  EXTENSAO
+  PESQUISA
+}
+
+enum TipoGrupo {
+  PESQUISA
+  ESTUDOS 
+  EXTENSAO
+  COLETIVO_ESTUDANTES
+}
+
+enum LocalReunioes {
+  SALA_PROFESSORES
+  SALA_LIDERES
+  OUTROS_ESPACOS_UNIVERSIDADE
+  AREAS_EXTERNAS_UNIVERSIDADE
+  SALA_VIRTUAL
+  OUTROS
+}
+
+enum Tematicas {
+  INDIGENAS
+  QUILOMBOLAS
+  NEGROS
+  LGBTQIAPLUS
+  CIGANOS
+  MULHERES
+  OUTROS
+}
+
 model AcoesAfirmativas {
   id Int @id @default(autoincrement())
   dataCriacao DateTime @default(now())
   datAtualizacao DateTime?
+  /// Temáticas abordadas pelo grupo
+  tematicas Tematicas[]
   /// Data da resposta ao google forms
   dataResposta DateTime
   /// Professor que respondeu o questionário
@@ -26,7 +60,7 @@ model Dimensao {
   dataCriacao DateTime @default(now())
   datAtualizacao DateTime?
   /// Dimensão (ENSINO, EXTENSÃO, PESQUISA)
-  tipo String
+  tipo TipoDimensao
   /// Tipo de ações realizadas
   tiposAcoesRealizadas String
   /// Descrição das ações realizadas
@@ -39,8 +73,8 @@ model Grupo {
   id Int @id @default(autoincrement())
   dataCriacao DateTime @default(now())
   datAtualizacao DateTime?
-  /// Tipo de grupo (PESQUISA, ESTUDOS, EXTENSÃO, COLETIVO DE ESTUDANTES)
-  tipo String
+  /// Tipo de grupo
+  tipo TipoGrupo[]
   /// Nome do grupo
   nome String
   /// Nome do líder do grupo
@@ -48,13 +82,11 @@ model Grupo {
   /// Email do líder do grupo
   liderEmail String
   /// Possui vínculo com o Cnpq?
-  vinculoCnpq String
+  vinculoCnpq Boolean
   /// Locais onde ocorrem as reuniões do grupo
-  localReunioes String
+  localReunioes LocalReunioes
   // Endereço das redes sociais do grupo
   redesSociais String
-  /// Temáticas abordadas pelo grupo
-  tematicas String
   acaoAfirmativa AcoesAfirmativas @relation(fields: [acaoAfirmativaId], references: [id])
   acaoAfirmativaId Int
 }
@@ -67,10 +99,8 @@ model Professor {
   nome String
   /// Email do professor
   email String
-  /// Participa de grupos referentes a acções afirmativas?
-  participaGrupoAcaoAfirmativa String
   /// Autoriza a utilização das informações fornecidas?
-  autorizaUtilizacaoInformacoes String
+  autorizaUtilizacaoInformacoes Boolean
   acaoAfirmativa AcoesAfirmativas @relation(fields: [acaoAfirmativaId], references: [id])
   acaoAfirmativaId Int
 }

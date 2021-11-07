@@ -1,21 +1,22 @@
 -- CreateEnum
-CREATE TYPE "TipoDimensao" AS ENUM ('PESQUISA', 'ENSINO', 'EXTENSAO');
+CREATE TYPE "TipoDimensao" AS ENUM ('ENSINO', 'EXTENSAO', 'PESQUISA');
 
 -- CreateEnum
-CREATE TYPE "TipoGrupo" AS ENUM ('PESQUISA', 'ESTUDOS', 'EXTENSAO', 'ESTUDANTES');
+CREATE TYPE "TipoGrupo" AS ENUM ('PESQUISA', 'ESTUDOS', 'EXTENSAO', 'COLETIVO_ESTUDANTES');
 
 -- CreateEnum
-CREATE TYPE "RespostaTernaria" AS ENUM ('SIM', 'NAO', 'TALVEZ');
+CREATE TYPE "LocalReunioes" AS ENUM ('SALA_PROFESSORES', 'SALA_LIDERES', 'OUTROS_ESPACOS_UNIVERSIDADE', 'AREAS_EXTERNAS_UNIVERSIDADE', 'SALA_VIRTUAL', 'OUTROS');
 
 -- CreateEnum
-CREATE TYPE "RespostaBinaria" AS ENUM ('SIM', 'NAO', 'TALVEZ');
+CREATE TYPE "Tematicas" AS ENUM ('INDIGENAS', 'QUILOMBOLAS', 'NEGROS', 'LGBTQIAPLUS', 'CIGANOS', 'MULHERES', 'OUTROS');
 
 -- CreateTable
 CREATE TABLE "AcoesAfirmativas" (
     "id" SERIAL NOT NULL,
     "dataCriacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "datAtualizacao" TIMESTAMP(3),
-    "tematicas" TEXT[],
+    "tematicas" "Tematicas"[],
+    "dataResposta" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "AcoesAfirmativas_pkey" PRIMARY KEY ("id")
 );
@@ -26,7 +27,7 @@ CREATE TABLE "Dimensao" (
     "dataCriacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "datAtualizacao" TIMESTAMP(3),
     "tipo" "TipoDimensao" NOT NULL,
-    "tiposAcoesRealizadas" TEXT[],
+    "tiposAcoesRealizadas" TEXT NOT NULL,
     "descricaoAcoesRealizadas" TEXT NOT NULL,
     "acaoAfirmativaId" INTEGER NOT NULL,
 
@@ -42,9 +43,9 @@ CREATE TABLE "Grupo" (
     "nome" TEXT NOT NULL,
     "liderNome" TEXT NOT NULL,
     "liderEmail" TEXT NOT NULL,
-    "vinculoCnpq" "RespostaBinaria" NOT NULL,
-    "localReunioes" TEXT NOT NULL,
-    "redesSociais" TEXT[],
+    "vinculoCnpq" BOOLEAN NOT NULL,
+    "localReunioes" "LocalReunioes" NOT NULL,
+    "redesSociais" TEXT NOT NULL,
     "acaoAfirmativaId" INTEGER NOT NULL,
 
     CONSTRAINT "Grupo_pkey" PRIMARY KEY ("id")
@@ -57,8 +58,7 @@ CREATE TABLE "Professor" (
     "datAtualizacao" TIMESTAMP(3),
     "nome" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "participaGrupoAcaoAfirmativa" "RespostaTernaria" NOT NULL,
-    "autorizaUtilizacaoInformacoes" "RespostaBinaria" NOT NULL,
+    "autorizaUtilizacaoInformacoes" BOOLEAN NOT NULL,
     "acaoAfirmativaId" INTEGER NOT NULL,
 
     CONSTRAINT "Professor_pkey" PRIMARY KEY ("id")
