@@ -1,14 +1,13 @@
 type PanelProps = {
-    id: string;
-    title: string;
+    title?: string;
     content?: any
 }
 
-export function Panel({ id, title, content }: PanelProps) {
+export function Panel({ title, content }: PanelProps) {
     return (
-        <div id={id} className="w-full bg-grayupe p-4 mb-10">
+        <div className="w-full bg-grayupe p-4 mb-10 text-center">
             <p className="text-whiteupe text-center text-2xl">{title}</p>
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center text-justify mt-6">
                 {content}
             </div>
         </div>
