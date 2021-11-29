@@ -2,35 +2,26 @@ import axios from "axios";
 import { useState } from "react";
 import { pegarDados } from "../services/filtrar-planilha.service";
 
-export default function Menu() {
-  const [planilha, setPlanilha] = useState<File | any>();
-
-  const onCarregarPlanilha = (event: any) => {
-    let arquivo = event.target.files[0];
-    setPlanilha(arquivo);
-  }
-
-  const onAdicionarAcoesAfirmativas = async () => {
-    if (planilha) {
-      let dados: any = await pegarDados(planilha);
-      await axios.post("/api/acoes", dados);
-      window.location.reload();
-    }
-  }
-
+export function Menu() {
   return (
-    <nav className="w-full flex justify-between bg-blupe m-auto p-4 text-whiteupe text-2xl">
-      <a href="/" className="cursor-pointer">Ações Afirmativas</a>
-      {!planilha &&
-        <label className="bg-red-500 text-white p-2 rounded cursor-pointer">
-          Adicionar planilha
-          <input onChange={onCarregarPlanilha} type="file" className="hidden"></input>
-        </label>
-      }
-      {planilha &&
-        <label onClick={onAdicionarAcoesAfirmativas} className="bg-green-500 text-white p-2 rounded cursor-pointer">
-          Registrar respostas
-        </label>}
-    </nav>
+    <>
+      <nav className="w-full bg-blupe p-4 text-whiteupe text-2xl">
+        <a href="#pres" className="cursor-pointer">Ações Afirmativas</a>
+      </nav>
+      <nav className="w-full flex flex-col justify-end md:flex-row md:justify-between bg-redupe p-2 text-whiteupe text-0.5xl">
+        <li>
+          <a href="#stats" className="cursor-pointer underline">Estatísticas</a>
+        </li>
+        <li>
+          <a href="#teaching" className="cursor-pointer underline">Dimensão Ensino</a>
+        </li>
+        <li>
+          <a href="#extension" className="cursor-pointer underline">Dimensão Extensão</a>
+        </li>
+        <li>
+          <a href="#search" className="cursor-pointer underline">Dimensão Pesquisa</a>
+        </li>
+      </nav>
+    </>
   )
 };
