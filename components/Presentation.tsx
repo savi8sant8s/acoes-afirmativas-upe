@@ -1,12 +1,10 @@
-type PresentationProps = {
-    id: string;
-}
+import Image from 'next/image';
 
-export function Presentation({ id }: PresentationProps) {
+export function Presentation() {
     return (
-        <div id={id} className="flex md:flex-row flex-col text-center justify-items-center">
-            <img className="p-8 text-center" width="300" height="100" src="logo.png" />
-            <div className="m-auto p-8 text-justify">
+        <div className="flex md:flex-row flex-col text-center justify-items-center p-8">
+            <Image alt="logo" className="text-center m-6" width="300" height="300" src="/logo.png" />
+            <div className="text-justify m-6 align">
                 <strong className="text-2xl text-left text-blupe">O que são ações afirmativas?</strong>
                 <p className=" text-1.5xl text-justify text-blupe">
                     Ações afirmativas são políticas públicas focais
