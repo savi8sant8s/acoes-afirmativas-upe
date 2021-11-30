@@ -22,7 +22,7 @@ function DimensaoExtensao({ dimensao }: InferGetServerSidePropsType<typeof getSe
 
     return (
     <div className="text-center p-10">
-      {dimensao[tipo].slice(0, 10).map((_dimensao: any, index: number) => (
+      {dimensao[String(tipo)].slice(0, 10).map((_dimensao: any, index: number) => (
         <div key={index} className="text-justify text-blupe mb-10">
           <p><strong>Professor: </strong> {_dimensao.professor.nome}</p>
           <p><strong>Atividades:</strong>
