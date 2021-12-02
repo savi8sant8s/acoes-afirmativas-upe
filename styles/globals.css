@@ -1,0 +1,62 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.small-padding {
+  padding: 0.5rem;
+}
+
+.bg-blue {
+  background-color: #334A76;
+}
+
+.bg-red {
+  background-color: #ED3237;
+}
+
+.link {
+  cursor: pointer;
+  color: #F4F4FD !important;
+}
+
+.badge-large{
+  font-size: 1.5rem !important;
+}
+
+.button {
+  background-color: #ED3237 !important;
+  border-color: #F4F4FD !important;
+}
+
+.item {
+  background-color: #8A98B1 !important;
+  color: #F4F4FD !important;
+}
+
+.card {
+  background-color: #8A98B1 !important;
+  width: 100%;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.color-blue {
+  color: #334A76;
+}
+
+.color-red {
+  color: #ED3237;
+}
+
+.color-white {
+  color: #F4F4FD;
+}
+

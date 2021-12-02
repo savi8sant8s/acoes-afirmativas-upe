@@ -1,4 +1,4 @@
-export const schemaPlanilha = {
+export const sheetSchema = {
     "Carimbo de data/hora": {
         prop: 'dataCriacao',
         type: Date
