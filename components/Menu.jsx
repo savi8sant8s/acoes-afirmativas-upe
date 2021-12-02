@@ -27,14 +27,16 @@ export function Menu() {
             <Navbar.Brand href="/">
                 <label className="color-white cursor-pointer">Ações afirmativas da UPE</label>
             </Navbar.Brand>
-            {!sheet &&
+        </Navbar>
+    )
+}
+
+/*
+{!sheet &&
                 <input onChange={onLoadSheet} type="file" placeholder="Carregar planilha"></input>
             }
             {sheet &&
                 <Button className="button" onClick={onAddSheet}>
                     Registrar respostas
                 </Button>}
-        </Navbar>
-    )
-}
-
+                */
