@@ -15,20 +15,20 @@ export default async function handler(req, res) {
                         tematicas: toTheme(acaoAfirmativa.tematicas),
                         professor: {
                             create: {
-                                nome: toLower(acaoAfirmativa.nome),
+                                nome: acaoAfirmativa.nome,
                                 email: toLower(acaoAfirmativa.email),
                                 autorizaUtilizacaoInformacoes: toBool(acaoAfirmativa.autorizaUtilizacaoInformacoes)
                             }
                         },
                         grupo: {
                             create: {
-                                nome: toLower(acaoAfirmativa.nomeGrupo),
+                                nome: acaoAfirmativa.nomeGrupo,
                                 tipo: toGroupType(acaoAfirmativa.tipoGrupo),
-                                liderNome: toLower(acaoAfirmativa.liderNome),
-                                liderEmail: toLower(acaoAfirmativa.liderEmail),
+                                liderNome: acaoAfirmativa.liderNome,
+                                liderEmail: acaoAfirmativa.liderEmail,
                                 vinculoCnpq: toBool(acaoAfirmativa.vinculoCnpq),
                                 localReunioes: toMeetingPlaces(acaoAfirmativa.localReunioes),
-                                redesSociais: toLower(acaoAfirmativa.redesSociais)
+                                redesSociais: acaoAfirmativa.redesSociais
                             }
                         },
                         dimensoes: {

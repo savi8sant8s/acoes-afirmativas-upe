@@ -1,11 +1,13 @@
 import {
   Container
 } from "react-bootstrap"
-import Indicator from "../components/Indicator"
-import Presentation from "../components/Presentation"
-import Stats from "../components/Stats"
-import ShortDimension from "../components/ShortDimension"
-import SubMenu from "../components/SubMenu"
+import { 
+  Indicator,
+  Presentation,
+  Stats, 
+  ShortDimension,
+  SubMenu 
+} from "../components"
 import axios from "axios"
 
 function Home({stats, shortDimensions}) {

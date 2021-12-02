@@ -2,6 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  font-family: Oswald !important;
 }
 
 .small-padding {
@@ -17,8 +18,13 @@ body {
 }
 
 .link {
+  text-decoration: underline;
   cursor: pointer;
   color: #F4F4FD !important;
+}
+
+.indicator {
+  margin-top: 5rem;
 }
 
 .badge-large{
@@ -26,6 +32,8 @@ body {
 }
 
 .button {
+  padding: 1rem !important;
+  border-radius: 2rem !important;
   background-color: #ED3237 !important;
   border-color: #F4F4FD !important;
 }

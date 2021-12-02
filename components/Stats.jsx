@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap'
 import Chart from 'react-google-charts'
 
-export default function Stats({ data }) {
+export function Stats({ data }) {
     return (
         <Card className="card mb-4">
             <Card.Body>
@@ -15,12 +15,19 @@ export default function Stats({ data }) {
                 </Card.Title>
                 <Row>
                     <Col sm={6} className="p-4">
-                        <h4 className="color-white">
-                            Docentes participantes: <Badge bg="info badge-large">{data.professors}</Badge>
-                        </h4>
-                        <h4 className="color-white">
-                            Grupos presentes no cnpq: <Badge bg="info badge-large">{data.cnpqGroups}</Badge>
-                        </h4>
+                        <Chart
+                            chartType="BarChart"
+                            data={[
+                                ['Participante(s)', 'Quantidade'],
+                                ['Professores', data.professors],
+                                ['Grupos com CNPQ', data.cnpqGroups],
+                                ['Grupos sem CNPQ', data.cnpqNotGroups],
+                            ]}
+                            options={{
+                                title: 'Participação',
+                                legend: { position: 'none' },
+                            }}
+                        />
                     </Col>
                     <Col sm={6} className="p-4">
                         <Chart
@@ -28,6 +35,7 @@ export default function Stats({ data }) {
                             data={data.groups}
                             options={{
                                 title: 'Identificação dos grupos',
+                                legend: { position: 'none' },
                             }}
                         />
                     </Col>
@@ -38,7 +46,8 @@ export default function Stats({ data }) {
                             chartType="PieChart"
                             data={data.themes}
                             options={{
-                                title: 'Temáticas abordadas'}}
+                                title: 'Temáticas abordadas',
+                            }}
                         />
                     </Col>
                     <Col sm={6} className="p-4">

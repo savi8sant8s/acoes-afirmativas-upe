@@ -12,8 +12,8 @@ export default async function handler(req, res) {
 
         result.timestamp = new Date();
         result.professors = await prisma.professor.count();
+        result.cnpqNotGroups = await prisma.grupo.count({where:{vinculoCnpq: false}});
         result.cnpqGroups = await prisma.grupo.count({where:{vinculoCnpq: true}});
-
         result.groups = generateMatriz(groups, "Tipo");
         result.themes = generateMatriz(themes, "Temáticas");
         result.meetingPlaces = generateMatriz(meetingPlaces, "Local das reuniões");

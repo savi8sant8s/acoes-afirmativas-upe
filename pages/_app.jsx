@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Head from 'next/head'
-import Menu from '../components/Menu'
+import { Menu } from '../components'
 
 function OAAUPE({ Component, pageProps }) {
   return (

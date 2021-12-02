@@ -4,28 +4,28 @@ import {
     Col
 } from "react-bootstrap"
 
-export default function SubMenu() {
+export function SubMenu() {
     return (
         <nav className="bg-red p-2">
             <Row>
                 <Col sm={3}>
                     <Link href="#dados">
-                        <li className="link">Estatísticas</li>
+                        <label className="link">Estatísticas</label>
                     </Link>
                 </Col>
                 <Col sm={3}>
                     <Link href="#ensino">
-                        <li className="link">Dimensão Ensino</li>
+                        <label className="link">Dimensão Ensino</label>
                     </Link>
                 </Col>
                 <Col sm={3}>
                     <Link href="#extensao">
-                        <li className="link">Dimensão Extensão</li>
+                        <label className="link">Dimensão Extensão</label>
                     </Link>
                 </Col>
                 <Col sm={3}>
                     <Link href="#pesquisa">
-                        <li className="link">Dimensão Pesquisa</li>
+                        <label className="link">Dimensão Pesquisa</label>
                     </Link>
                 </Col>
             </Row>

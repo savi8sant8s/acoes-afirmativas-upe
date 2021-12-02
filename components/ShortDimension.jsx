@@ -5,7 +5,7 @@ import {
     Container
 } from 'react-bootstrap'
 
-export default function ShortDimension({title, data}) {
+export function ShortDimension({title, data}) {
     return (
         <Card className="card mb-4">
             <Card.Body>

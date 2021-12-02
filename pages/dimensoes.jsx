@@ -1,17 +1,17 @@
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import Dimension from '../components/Dimension'
+import {
+    Dimension
+} from '../components'
 import {
     Container
 } from "react-bootstrap"
 import axios from 'axios'
 
 
-function DimensionType({ dimensions }) {
+function Dimensions({ dimensions }) {
 
     return (
         <Container fluid>
-            <h3 className="color-blue p-4 text-center">Atividades desenvolvidas</h3>
+            <h3 className="color-blue p-4 text-center">Ações afirmativas desenvolvidas</h3>
             {dimensions.map((item, index) => (
                 <Dimension
                     key={index}
@@ -23,9 +23,9 @@ function DimensionType({ dimensions }) {
     )
 }
 
-DimensionType.getInitialProps = async (ctx) => {
-        const dimensions = await axios.get(`https://acoes-afirmativas-upe.vercel.app/api/dimensions`);
-        return { dimensions: dimensions.data }
+Dimensions.getInitialProps = async (ctx) => {
+    const dimensions = await axios.get("https://acoes-afirmativas-upe.vercel.app/api/dimensions");
+    return { dimensions: dimensions.data }
 }
 
-export default DimensionType
+export default Dimensions

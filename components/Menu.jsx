@@ -6,7 +6,7 @@ import { useState } from "react"
 import { getData } from "../services/filter-sheet"
 import axios from "axios"
 
-export default function Menu() {
+export function Menu() {
     const [sheet, setSheet] = useState();
 
     const onLoadSheet = (event) => {

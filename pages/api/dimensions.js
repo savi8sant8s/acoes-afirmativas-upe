@@ -16,6 +16,7 @@ export default async function handler(req, res) {
                 },
                 dimensoes: {
                     select: {
+                        tipo: true,
                         descricaoAcoesRealizadas: true,
                     }
                 }
