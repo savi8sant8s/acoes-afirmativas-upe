@@ -24,7 +24,7 @@ function DimensionType({ dimensions }) {
 }
 
 DimensionType.getInitialProps = async (ctx) => {
-        const dimensions = await axios.get(`http://localhost:3000/api/dimensions`);
+        const dimensions = await axios.get(`https://acoes-afirmativas-upe.vercel.app/api/dimensions`);
         return { dimensions: dimensions.data }
 }
 

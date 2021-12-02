@@ -28,8 +28,8 @@ function Home({stats, shortDimensions}) {
 }
 
 Home.getInitialProps = async (ctx) => {
-  const shortDimensions = await axios.get("http://localhost:3000/api/short-dimensions");
-  const stats = await axios.get("http://localhost:3000/api/stats");
+  const shortDimensions = await axios.get("https://acoes-afirmativas-upe.vercel.app/api/short-dimensions");
+  const stats = await axios.get("https://acoes-afirmativas-upe.vercel.app/api/stats");
 
   return { stats: stats.data, shortDimensions: shortDimensions.data }
 }
