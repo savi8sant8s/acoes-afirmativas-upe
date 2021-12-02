@@ -1,7 +1,6 @@
-import { PrismaClient, TipoDimensao } from '.prisma/client';
+import { TipoDimensao } from '.prisma/client';
 import { toBool, toMeetingPlaces, toLower, toTheme, toGroupType } from "../../services/conversion.service";
-
-const prisma = new PrismaClient();
+import prisma from "../../services/prisma.service";
 
 export default async function handler(req, res) {
     let acoesAfirmativas = req.body;

@@ -6,6 +6,7 @@ import {
 } from "react-bootstrap"
 import axios from 'axios'
 
+const API_URL = process.env.NEXT_PUBLIC_SERVER_API_URL
 
 function Dimensions({ dimensions }) {
 
@@ -24,7 +25,7 @@ function Dimensions({ dimensions }) {
 }
 
 Dimensions.getInitialProps = async (ctx) => {
-    const dimensions = await axios.get("https://acoes-afirmativas-upe.vercel.app/api/dimensions");
+    const dimensions = await axios.get(`${API_URL}/api/dimensions`);
     return { dimensions: dimensions.data }
 }
 

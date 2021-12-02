@@ -1,9 +1,6 @@
-import { PrismaClient } from '.prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from "../../services/prisma.service";
 
 export default async function handler(req, res) {
-    let type = req.query.type;
 
     if (req.method == "GET") {
         let result = {};

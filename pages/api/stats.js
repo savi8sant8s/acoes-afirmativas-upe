@@ -1,7 +1,5 @@
-import { PrismaClient } from '.prisma/client';
 import { generateMatriz } from '../../services/generate-matriz.service'
-
-const prisma = new PrismaClient()
+import prisma from "../../services/prisma.service";
 
 export default async function handler(req, res) {
     if (req.method == "GET"){

@@ -1,6 +1,5 @@
-import { TipoDimensao, PrismaClient } from '.prisma/client';
-
-const prisma = new PrismaClient()
+import { TipoDimensao } from '.prisma/client';
+import prisma from "../../services/prisma.service";
 
 export default async function handler(req, res) {
     if (req.method == "GET") {

@@ -10,6 +10,7 @@ import {
 } from "../components"
 import axios from "axios"
 
+const API_URL = process.env.NEXT_PUBLIC_SERVER_API_URL
 function Home({stats, shortDimensions}) {
   return (
     <>
@@ -30,8 +31,8 @@ function Home({stats, shortDimensions}) {
 }
 
 Home.getInitialProps = async (ctx) => {
-  const shortDimensions = await axios.get("https://acoes-afirmativas-upe.vercel.app/api/short-dimensions");
-  const stats = await axios.get("https://acoes-afirmativas-upe.vercel.app/api/stats");
+  const shortDimensions = await axios.get(`${API_URL}/api/short-dimensions`);
+  const stats = await axios.get(`${API_URL}/api/stats`);
 
   return { stats: stats.data, shortDimensions: shortDimensions.data }
 }
